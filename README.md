@@ -1,6 +1,8 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+Node version used: 18.15.0
 
 ## Setup
 
