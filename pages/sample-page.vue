@@ -4,6 +4,9 @@
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+const preloader = usePreloader();
+preloader.isLoading.value = false;
+</script>
 
 <style lang="scss" scoped></style>
