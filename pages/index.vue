@@ -2,6 +2,7 @@
 	<div>
 		<h1 class="text-4xl">Home page</h1>
 
+		<!-- device detection -->
 		<div class="mt-10">
 			<p>Device detection:</p>
 			<p>is mobile: {{ $device.isMobile }}</p>
@@ -9,16 +10,29 @@
 			<p>is desktop: {{ $device.isDesktop }}</p>
 		</div>
 
+		<!-- static image -->
 		<div class="container mt-10">
 			<p>Nuxt-img component:</p>
 			<NuxtImg src="/static.jpeg" class="w-full lg:w-1/2 mx-auto" />
 		</div>
 
+		<!-- api data -->
 		<div class="container mt-10">
 			<ul class="grid grid-cols-2">
-				<li v-for="photo in photos" :key="photo.id" class="border">
-					<p>{{ photo.title }}</p>
-					<p>{{ photo.url }}</p>
+				<li
+					v-for="article in articles.data"
+					:key="article.id"
+					class="border flex flex-col p-3">
+					<span>Article title: {{ article.title }}</span>
+					<span>Article status: {{ article.status }}</span>
+					<ul class="inline-flex gap-4">
+						<li
+							v-for="tag in article.tags"
+							:key="tag"
+							class="border border-white rounded-full p-1">
+							{{ tag }}
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</div>
@@ -28,8 +42,10 @@
 <script setup>
 const preloader = usePreloader();
 
-const { data: photos } = await useFetch(
-	"https://jsonplaceholder.typicode.com/photos?_limit=50",
+const runtimeConfig = useRuntimeConfig();
+
+const { data: articles } = await useFetch(
+	`${runtimeConfig.public.apiBase}/articles`,
 );
 
 preloader.isLoading.value = false;
