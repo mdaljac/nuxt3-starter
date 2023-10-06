@@ -13,19 +13,19 @@
 		<!-- static image -->
 		<div class="container mt-10">
 			<p>Nuxt-img component:</p>
-			<NuxtImg src="/static.jpeg" class="w-full lg:w-1/2 mx-auto" />
+			<NuxtImg src="/static.jpeg" class="w-full lg:w-1/2" />
 		</div>
 
 		<!-- api data -->
 		<div class="container mt-10">
-			<ul class="grid grid-cols-2">
+			<ul class="grid grid-cols-1 md:grid-cols-2">
 				<li
 					v-for="article in articles.data"
 					:key="article.id"
-					class="border flex flex-col p-3">
+					class="border flex flex-col p-3 space-y-2">
 					<span>Article title: {{ article.title }}</span>
 					<span>Article status: {{ article.status }}</span>
-					<ul class="inline-flex gap-4">
+					<ul class="flex flex-wrap gap-2">
 						<li
 							v-for="tag in article.tags"
 							:key="tag"
